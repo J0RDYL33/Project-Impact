@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using NPCClasses;
 
 public class NPCSaver : MonoBehaviour
 {
@@ -10,17 +11,20 @@ public class NPCSaver : MonoBehaviour
     private ToolCalcs myCalcs;
 
     public int placeInList;
-    private string inputText;
+    public TMP_InputField nameInput;
+    private string nameFromInput;
     private NPCButtons myButton;
+    private NPC myNPC;
     // Start is called before the first frame update
     void Start()
     {
         myCalcs = FindObjectOfType<ToolCalcs>();
         myButton = FindObjectOfType<NPCButtons>();
 
-        inputText = GetComponent<TMP_InputField>().text;
+        nameFromInput = nameInput.text;
 
-        myCalcs.NPCs.Add("");
+        myNPC = new NPC();
+        myCalcs.NPCs.Add(myNPC);
         placeInList = myButton.attributeList.Count;
 
         Debug.Log("My pos in the list is " + placeInList);
@@ -32,9 +36,9 @@ public class NPCSaver : MonoBehaviour
         
     }
 
-    public void OnFinishEditing()
+    public void OnFinishEditingName()
     {
-        inputText = GetComponent<TMP_InputField>().text;
-        myCalcs.NPCs[placeInList-1] = inputText;
+        nameFromInput = nameInput.text;
+        myCalcs.NPCs[placeInList-1].name = nameFromInput;
     }
 }
