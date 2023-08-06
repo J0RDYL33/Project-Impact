@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPCDeleter : MonoBehaviour
 {
     private NPCButtons onlyButtonBehaviour;
-    [SerializeField] private NPCSaver myToolScript;
+    [SerializeField] private IAmNPC myToolScript;
     private int posInList;
 
     private void Start()
@@ -15,7 +15,7 @@ public class NPCDeleter : MonoBehaviour
 
     public void DeleteMyParent()
     {
-        posInList = myToolScript.placeInList;
+        posInList = myToolScript.myIndexInButton;
         onlyButtonBehaviour.DeleteListEntry(posInList);
     }
 }

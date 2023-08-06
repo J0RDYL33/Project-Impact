@@ -9,7 +9,7 @@ public class NPCButtons : MonoBehaviour
     [SerializeField] private GameObject parentObject;
     [SerializeField] private ScrollRect myRect;
     private ToolCalcs theCalcs;
-    public List<GameObject> attributeList;
+    public List<GameObject> NPCList;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +24,11 @@ public class NPCButtons : MonoBehaviour
         newField.transform.SetParent(parentObject.transform);
         newField.transform.localScale = new Vector3(1, 1, 1);
 
-        attributeList.Add(newField);
+        NPCList.Add(newField);
         newField.name = Random.Range(0, 1000).ToString();
 
-        newField.transform.SetSiblingIndex(attributeList.Count-1);
-        this.transform.SetSiblingIndex(attributeList.Count);
+        newField.transform.SetSiblingIndex(NPCList.Count-1);
+        this.transform.SetSiblingIndex(NPCList.Count);
 
         StartCoroutine(ScrollbartoZero());
     }
@@ -43,20 +43,20 @@ public class NPCButtons : MonoBehaviour
     public void DeleteListEntry(int posToDelete)
     {
         //Get the object we'll be deleting from the list
-        GameObject objToDelete = attributeList[posToDelete-1];
+        GameObject objToDelete = NPCList[posToDelete];
 
         //Remove it from the calc list
-        theCalcs.NPCs.RemoveAt(posToDelete - 1);
+        theCalcs.NPCs.RemoveAt(posToDelete);
 
         //Remove it from this list
-        attributeList.RemoveAt(posToDelete-1);
+        NPCList.RemoveAt(posToDelete);
         Destroy(objToDelete);
 
-        for (int i = 0; i < attributeList.Count; i++)
+        for (int i = 0; i < NPCList.Count; i++)
         {
-            if(attributeList[i].GetComponentInChildren<NPCSaver>().placeInList > posToDelete)
+            if(NPCList[i].GetComponent<IAmNPC>().myIndexInButton > posToDelete)
             {
-                attributeList[i].GetComponentInChildren<NPCSaver>().placeInList--;
+                NPCList[i].GetComponent<IAmNPC>().UpdateIndex();
             }
         }
     }
