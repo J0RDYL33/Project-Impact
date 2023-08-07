@@ -17,6 +17,12 @@ public class IAmNPC : MonoBehaviour
     public int myIndexInButton;
     public string nameFromInput;
     public List<NPCDialog> myDialogs;
+    public List<SliderBehaviour> mySliders;
+
+    //Slider prefab stuff
+    [SerializeField] private GameObject sliderPrefab;
+    [SerializeField] private GameObject parentOfAttribute;
+    private DialogButtons dialogButtons;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +31,7 @@ public class IAmNPC : MonoBehaviour
         myCalcs = FindObjectOfType<ToolCalcs>();
         //The only NPCButtons in the project, find it
         myButton = FindObjectOfType<NPCButtons>();
+        dialogButtons = GetComponentInChildren<DialogButtons>();
 
         //Add myself to the list in myCalcs
         myCalcs.NPCs.Add(this);
@@ -33,6 +40,8 @@ public class IAmNPC : MonoBehaviour
         UpdateIndex();
         //Check to see if the NPC has a name
         UpdateName();
+        //Add the attributes that have already been made to the NPC
+        AddExistingAttributes();
     }
 
     // Update is called once per frame
@@ -44,11 +53,54 @@ public class IAmNPC : MonoBehaviour
     public void UpdateIndex()
     {
         myIndexInButton = myButton.NPCList.IndexOf(this.gameObject);
-        Debug.Log("I am NPC " + this.gameObject.name + " and my new index is " + myIndexInButton);
     }
 
     public void UpdateName()
     {
         nameFromInput = nameInput.text;
+
+        if (nameFromInput == "")
+            this.gameObject.name = "NPC";
+        else
+            this.gameObject.name = nameFromInput + " The NPC";
+    }
+
+    public void AddAttribute()
+    {
+        GameObject newSlider = Instantiate(sliderPrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+        newSlider.transform.SetParent(parentOfAttribute.transform);
+        newSlider.transform.localScale = new Vector3(1, 1, 1);
+        newSlider.transform.localPosition = new Vector3(0, 0, 0);
+
+        //newSlider.transform.SetSiblingIndex(mySliders.Count);
+
+        dialogButtons.RefreshRect();
+    }
+
+    private void AddExistingAttributes()
+    {
+        for(int i = 0; i < myCalcs.NPCAttributes.Count; i++)
+        {
+            AddAttribute();
+        }
+    }
+
+    public void UpdateAttribute(int indexOfUpdated)
+    {
+        mySliders[indexOfUpdated].UpdateText();
+    }
+
+    public void DeleteAttribute(int indexToDelete)
+    {
+        Debug.Log("Deleting a slider");
+        GameObject objToDelete = mySliders[indexToDelete].gameObject;
+        mySliders.RemoveAt(indexToDelete);
+        Destroy(objToDelete);
+
+        for(int i = 0; i < mySliders.Count; i++)
+        {
+            Debug.Log("Updating the index of slider " + i);
+            mySliders[i].UpdateIndex();
+        }
     }
 }

@@ -10694,12 +10694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2ae56893a0ebf428ea252f806daca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCalcs: {fileID: 0}
-  placeInList: 0
-  nameInput: {fileID: 0}
-  nameFromInput: 
-  myButton: {fileID: 0}
-  myNPC: {fileID: 0}
 --- !u!114 &5535855764544848079
 MonoBehaviour:
   m_ObjectHideFlags: 0

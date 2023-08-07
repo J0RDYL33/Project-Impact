@@ -19,9 +19,8 @@ public class SaveToTool : MonoBehaviour
         inputText = GetComponent<TMP_InputField>().text;
 
         myCalcs.NPCAttributes.Add("");
-        placeInList = myButton.attributeList.Count;
-
-        Debug.Log("My pos in the list is " + placeInList);
+        myCalcs.AddedAttribute();
+        placeInList = myButton.attributeList.Count-1;
     }
 
     // Update is called once per frame
@@ -33,6 +32,7 @@ public class SaveToTool : MonoBehaviour
     public void OnFinishEditing()
     {
         inputText = GetComponent<TMP_InputField>().text;
-        myCalcs.NPCAttributes[placeInList-1] = inputText;
+        myCalcs.NPCAttributes[placeInList] = inputText;
+        myCalcs.UpdateAttributes(placeInList);
     }
 }

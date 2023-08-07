@@ -24,6 +24,7 @@ public class NPCDialog : MonoBehaviour
     {
         //Search up through the dialogs parents til it finds its NPC
         myNPC = GetComponentInParent<IAmNPC>();
+        myNPC.myDialogs.Add(this);
 
         //Get the dialogs index in its NPC
         UpdateIndex();
@@ -38,7 +39,6 @@ public class NPCDialog : MonoBehaviour
     public void UpdateIndex()
     {
         dialogPlacement = myNPC.myDialogs.IndexOf(this);
-        Debug.Log("I am " + this.gameObject.name + " and my new index is " + dialogPlacement);
         this.gameObject.name = "Dialog " + dialogPlacement + " of NPC " + myNPC.gameObject.name;
     }
 

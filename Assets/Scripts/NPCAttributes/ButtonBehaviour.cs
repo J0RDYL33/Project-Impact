@@ -25,7 +25,6 @@ public class ButtonBehaviour : MonoBehaviour
         newField.transform.localScale = new Vector3(1, 1, 1);
 
         attributeList.Add(newField);
-        Debug.Log(attributeList.Count);
         newField.name = Random.Range(0, 1000).ToString();
 
         newField.transform.SetSiblingIndex(attributeList.Count-1);
@@ -44,13 +43,16 @@ public class ButtonBehaviour : MonoBehaviour
     public void DeleteListEntry(int posToDelete)
     {
         //Get the object we'll be deleting from the list
-        GameObject objToDelete = attributeList[posToDelete-1];
+        GameObject objToDelete = attributeList[posToDelete];
 
         //Remove it from the calc list
-        theCalcs.NPCAttributes.RemoveAt(posToDelete - 1);
+        theCalcs.NPCAttributes.RemoveAt(posToDelete);
+
+        //Call ToolCalcs function to update all the NPCs that could have been using what we just deleted
+        theCalcs.DeletedAttribute(posToDelete);
 
         //Remove it from this list
-        attributeList.RemoveAt(posToDelete-1);
+        attributeList.RemoveAt(posToDelete);
         Destroy(objToDelete);
 
         for (int i = 0; i < attributeList.Count; i++)

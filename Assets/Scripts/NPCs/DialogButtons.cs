@@ -31,7 +31,7 @@ public class DialogButtons : MonoBehaviour
         RefreshRect();
     }
 
-    private void RefreshRect()
+    public void RefreshRect()
     {
         myRect.sizeDelta = new Vector2(600,0);
     }
