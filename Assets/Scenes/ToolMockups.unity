@@ -6428,9 +6428,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCAttributes: []
-  VisualAttributes: []
+  visualAttributes: []
   NPCs: []
+  visualAspects: []
   NPCCanvas: {fileID: 1798358454}
+  aspectCanvas: {fileID: 1802469612}
 --- !u!1 &1714398546
 GameObject:
   m_ObjectHideFlags: 0
@@ -7745,10 +7747,10 @@ GameObject:
   - component: {fileID: 2038219768}
   - component: {fileID: 2038219772}
   - component: {fileID: 2038219771}
-  - component: {fileID: 2038219770}
+  - component: {fileID: 2038219773}
   - component: {fileID: 2038219769}
   m_Layer: 5
-  m_Name: Create New NPC Button
+  m_Name: Create New Aspect Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7818,23 +7820,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2038219771}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2038219770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2038219767}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a100ab4429e944bbd1014c3975f62b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputField: {fileID: 3644708675774736372, guid: e1b7b93483463c54aab857d306cd0b90, type: 3}
-  parentObject: {fileID: 1832095218}
-  myRect: {fileID: 540508784}
-  NPCList: []
+      m_Calls:
+      - m_Target: {fileID: 2038219773}
+        m_TargetAssemblyTypeName: AspectButtons, Assembly-CSharp
+        m_MethodName: InstantiateField
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2038219771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7873,6 +7871,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038219767}
   m_CullTransparentMesh: 1
+--- !u!114 &2038219773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038219767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455db0081435ee341b5e5d93634d4e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aspectPrefab: {fileID: 3644708675774736372, guid: 74dfaedaf5b44a540b5ab1c39d80609c, type: 3}
+  parentObject: {fileID: 1832095218}
+  myRect: {fileID: 540508784}
+  aspectList: []
 --- !u!1 &2046519471
 GameObject:
   m_ObjectHideFlags: 0

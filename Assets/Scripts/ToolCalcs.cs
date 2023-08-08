@@ -6,9 +6,11 @@ using UnityEngine;
 public class ToolCalcs : MonoBehaviour
 {
     public List<string> NPCAttributes;
-    public List<string> VisualAttributes;
+    public List<string> visualAttributes;
     public List<IAmNPC> NPCs;
+    public List<IAmAspect> visualAspects;
     [SerializeField] private GameObject NPCCanvas;
+    [SerializeField] private GameObject aspectCanvas;
 
     public void AddedAttribute()
     {
@@ -38,6 +40,31 @@ public class ToolCalcs : MonoBehaviour
         }
     }
 
+    public void DeletedAspect(int posOfDeleted)
+    {
+        for (int i = 0; i < visualAspects.Count; i++)
+        {
+            visualAspects[i].DeleteAttribute(posOfDeleted);
+        }
+    }
+
+    public void AddedAspect()
+    {
+        for (int i = 0; i < visualAspects.Count; i++)
+        {
+            visualAspects[i].AddAspect();
+        }
+    }
+
+    public void UpdateAspect(int indexOfAspect)
+    {
+        //Once called, go to each IAmNPC and update the new list
+        for (int i = 0; i < visualAspects.Count; i++)
+        {
+            visualAspects[i].UpdateAspect(indexOfAspect);
+        }
+    }
+
     public void FlashNPCCanvas()
     {
         StartCoroutine(FlashingCanvas());
@@ -46,7 +73,9 @@ public class ToolCalcs : MonoBehaviour
     IEnumerator FlashingCanvas()
     {
         NPCCanvas.SetActive(true);
+        aspectCanvas.SetActive(true);
         yield return new WaitForEndOfFrame();
         NPCCanvas.SetActive(false);
+        aspectCanvas.SetActive(false);
     }
 }

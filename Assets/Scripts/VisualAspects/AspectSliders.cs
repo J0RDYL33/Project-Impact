@@ -1,50 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class SliderBehaviour : MonoBehaviour
+public class AspectSliders : MonoBehaviour
 {
     public TMP_Text textObject;
     public Slider sliderObject;
 
-    public int indexInNPC;
-    public string nameOfAttribute;
+    public int indexInAspect;
+    public string nameOfAspect;
     public float valueOfSlider;
 
     private ToolCalcs myCalcs;
-    private IAmNPC myNPC;
+    private IAmAspect myAspect;
     // Start is called before the first frame update
     void Start()
     {
         myCalcs = FindObjectOfType<ToolCalcs>();
-        myNPC = GetComponentInParent<IAmNPC>();
+        myAspect = GetComponentInParent<IAmAspect>();
 
-        myNPC.mySliders.Add(this);
+        myAspect.mySliders.Add(this);
 
         UpdateIndex();
         UpdateText();
         UpdateValue();
     }
 
+    public void UpdateIndex()
+    {
+        indexInAspect = myAspect.mySliders.IndexOf(this);
+
+        this.gameObject.name = indexInAspect.ToString();
+    }
+
     public void UpdateText()
     {
         UpdateIndex();
-        nameOfAttribute = myCalcs.NPCAttributes[indexInNPC];
-        textObject.text = nameOfAttribute;
+        nameOfAspect = myCalcs.visualAttributes[indexInAspect];
+        textObject.text = nameOfAspect;
     }
 
     //Called when the slider value changes
     public void UpdateValue()
     {
         valueOfSlider = sliderObject.value;
-    }
-
-    public void UpdateIndex()
-    {
-        indexInNPC = myNPC.mySliders.IndexOf(this);
-
-        this.gameObject.name = indexInNPC.ToString();
     }
 }

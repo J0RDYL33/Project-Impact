@@ -20,10 +20,11 @@ public class VisualTraitSaver : MonoBehaviour
 
         inputText = GetComponent<TMP_InputField>().text;
 
-        myCalcs.VisualAttributes.Add("");
-        placeInList = myButton.attributeList.Count;
+        myCalcs.visualAttributes.Add("");
+        myCalcs.AddedAspect();
+        placeInList = myButton.attributeList.Count-1;
 
-        Debug.Log("My pos in the list is " + placeInList);
+        myCalcs.FlashNPCCanvas();
     }
 
     // Update is called once per frame
@@ -35,6 +36,10 @@ public class VisualTraitSaver : MonoBehaviour
     public void OnFinishEditing()
     {
         inputText = GetComponent<TMP_InputField>().text;
-        myCalcs.VisualAttributes[placeInList-1] = inputText;
+        myCalcs.visualAttributes[placeInList] = inputText;
+        myCalcs.UpdateAspect(placeInList);
+
+        myCalcs.FlashNPCCanvas();
+        Debug.Log("Should flash canvas");
     }
 }
