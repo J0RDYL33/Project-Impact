@@ -8,12 +8,14 @@ public class ToolCalcs : MonoBehaviour
     public List<string> NPCAttributes;
     public List<string> VisualAttributes;
     public List<IAmNPC> NPCs;
+    [SerializeField] private GameObject NPCCanvas;
 
     public void AddedAttribute()
     {
         for(int i = 0; i < NPCs.Count; i++)
         {
             NPCs[i].AddAttribute();
+            NPCs[i].UpdateDialogOptions();
         }
     }
 
@@ -23,6 +25,7 @@ public class ToolCalcs : MonoBehaviour
         for (int i = 0; i < NPCs.Count; i++)
         {
             NPCs[i].UpdateAttribute(indexOfAttribute);
+            NPCs[i].UpdateDialogOptions();
         }
     }
 
@@ -31,6 +34,19 @@ public class ToolCalcs : MonoBehaviour
         for (int i = 0; i < NPCs.Count; i++)
         {
             NPCs[i].DeleteAttribute(posOfDeleted);
+            NPCs[i].UpdateDialogOptions();
         }
+    }
+
+    public void FlashNPCCanvas()
+    {
+        StartCoroutine(FlashingCanvas());
+    }
+
+    IEnumerator FlashingCanvas()
+    {
+        NPCCanvas.SetActive(true);
+        yield return new WaitForEndOfFrame();
+        NPCCanvas.SetActive(false);
     }
 }

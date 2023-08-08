@@ -21,6 +21,8 @@ public class SaveToTool : MonoBehaviour
         myCalcs.NPCAttributes.Add("");
         myCalcs.AddedAttribute();
         placeInList = myButton.attributeList.Count-1;
+
+        myCalcs.FlashNPCCanvas();
     }
 
     // Update is called once per frame
@@ -34,5 +36,7 @@ public class SaveToTool : MonoBehaviour
         inputText = GetComponent<TMP_InputField>().text;
         myCalcs.NPCAttributes[placeInList] = inputText;
         myCalcs.UpdateAttributes(placeInList);
+
+        myCalcs.FlashNPCCanvas();
     }
 }

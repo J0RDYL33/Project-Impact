@@ -9,6 +9,7 @@ public class MenuCanvasChanger : MonoBehaviour
     [SerializeField] private GameObject npcAttributeCanvas;
     [SerializeField] private GameObject visualTraitCanvas;
     [SerializeField] private GameObject NPCCanvas;
+    [SerializeField] private GameObject visualAspectCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class MenuCanvasChanger : MonoBehaviour
         npcAttributeCanvas.SetActive(false);
         visualTraitCanvas.SetActive(false);
         NPCCanvas.SetActive(false);
+        visualAspectCanvas.SetActive(false);
 
         activeCanvas = mainCanvas;
     }
@@ -25,6 +27,7 @@ public class MenuCanvasChanger : MonoBehaviour
         activeCanvas.SetActive(false);
         visualTraitCanvas.SetActive(false);
         NPCCanvas.SetActive(false);
+        visualAspectCanvas.SetActive(false);
 
         mainCanvas.SetActive(true);
     }
@@ -34,7 +37,7 @@ public class MenuCanvasChanger : MonoBehaviour
         mainCanvas.SetActive(false);
         visualTraitCanvas.SetActive(false);
         NPCCanvas.SetActive(false);
-
+        visualAspectCanvas.SetActive(false);
         npcAttributeCanvas.SetActive(true);
 
         activeCanvas = npcAttributeCanvas;
@@ -45,7 +48,7 @@ public class MenuCanvasChanger : MonoBehaviour
         mainCanvas.SetActive(false);
         visualTraitCanvas.SetActive(true);
         NPCCanvas.SetActive(false);
-
+        visualAspectCanvas.SetActive(false);
         npcAttributeCanvas.SetActive(false);
 
         activeCanvas = visualTraitCanvas;
@@ -56,7 +59,18 @@ public class MenuCanvasChanger : MonoBehaviour
         mainCanvas.SetActive(false);
         visualTraitCanvas.SetActive(false);
         NPCCanvas.SetActive(true);
+        visualAspectCanvas.SetActive(false);
+        npcAttributeCanvas.SetActive(false);
 
+        activeCanvas = NPCCanvas;
+    }
+
+    public void ToVisual()
+    {
+        mainCanvas.SetActive(false);
+        visualTraitCanvas.SetActive(false);
+        NPCCanvas.SetActive(false);
+        visualAspectCanvas.SetActive(true);
         npcAttributeCanvas.SetActive(false);
 
         activeCanvas = visualTraitCanvas;

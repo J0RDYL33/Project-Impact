@@ -30,6 +30,8 @@ public class SliderBehaviour : MonoBehaviour
 
     public void UpdateText()
     {
+        Debug.Log("In the sliders update text function");
+        UpdateIndex();
         nameOfAttribute = myCalcs.NPCAttributes[indexInNPC];
         textObject.text = nameOfAttribute;
     }

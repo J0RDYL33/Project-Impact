@@ -103,4 +103,12 @@ public class IAmNPC : MonoBehaviour
             mySliders[i].UpdateIndex();
         }
     }
+
+    public void UpdateDialogOptions()
+    {
+        for(int i = 0; i < myDialogs.Count; i++)
+        {
+            myDialogs[i].AddOption();
+        }
+    }
 }
