@@ -46,6 +46,11 @@ public class ToolCalcs : MonoBehaviour
         {
             visualAspects[i].DeleteAttribute(posOfDeleted);
         }
+
+        for(int i = 0; i < NPCs.Count; i++)
+        {
+            NPCs[i].UpdateDropdownOptions();
+        }
     }
 
     public void AddedAspect()
@@ -53,6 +58,11 @@ public class ToolCalcs : MonoBehaviour
         for (int i = 0; i < visualAspects.Count; i++)
         {
             visualAspects[i].AddAspect();
+        }
+
+        for (int i = 0; i < NPCs.Count; i++)
+        {
+            NPCs[i].UpdateDropdownOptions();
         }
     }
 
@@ -62,6 +72,11 @@ public class ToolCalcs : MonoBehaviour
         for (int i = 0; i < visualAspects.Count; i++)
         {
             visualAspects[i].UpdateAspect(indexOfAspect);
+        }
+
+        for (int i = 0; i < NPCs.Count; i++)
+        {
+            NPCs[i].UpdateDropdownOptions();
         }
     }
 

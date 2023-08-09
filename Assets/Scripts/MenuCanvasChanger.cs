@@ -10,6 +10,8 @@ public class MenuCanvasChanger : MonoBehaviour
     [SerializeField] private GameObject visualTraitCanvas;
     [SerializeField] private GameObject NPCCanvas;
     [SerializeField] private GameObject visualAspectCanvas;
+    [SerializeField] private GameObject NPCSubMenuCanvas;
+    [SerializeField] private GameObject VisualSubMenuCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,8 @@ public class MenuCanvasChanger : MonoBehaviour
         visualTraitCanvas.SetActive(false);
         NPCCanvas.SetActive(false);
         visualAspectCanvas.SetActive(false);
+        NPCSubMenuCanvas.SetActive(false);
+        VisualSubMenuCanvas.SetActive(false);
 
         activeCanvas = mainCanvas;
     }
@@ -28,6 +32,8 @@ public class MenuCanvasChanger : MonoBehaviour
         visualTraitCanvas.SetActive(false);
         NPCCanvas.SetActive(false);
         visualAspectCanvas.SetActive(false);
+        NPCSubMenuCanvas.SetActive(false);
+        VisualSubMenuCanvas.SetActive(false);
 
         mainCanvas.SetActive(true);
     }
@@ -39,6 +45,8 @@ public class MenuCanvasChanger : MonoBehaviour
         NPCCanvas.SetActive(false);
         visualAspectCanvas.SetActive(false);
         npcAttributeCanvas.SetActive(true);
+        NPCSubMenuCanvas.SetActive(false);
+        VisualSubMenuCanvas.SetActive(false);
 
         activeCanvas = npcAttributeCanvas;
     }
@@ -50,6 +58,8 @@ public class MenuCanvasChanger : MonoBehaviour
         NPCCanvas.SetActive(false);
         visualAspectCanvas.SetActive(false);
         npcAttributeCanvas.SetActive(false);
+        NPCSubMenuCanvas.SetActive(false);
+        VisualSubMenuCanvas.SetActive(false);
 
         activeCanvas = visualTraitCanvas;
     }
@@ -61,6 +71,8 @@ public class MenuCanvasChanger : MonoBehaviour
         NPCCanvas.SetActive(true);
         visualAspectCanvas.SetActive(false);
         npcAttributeCanvas.SetActive(false);
+        NPCSubMenuCanvas.SetActive(false);
+        VisualSubMenuCanvas.SetActive(false);
 
         activeCanvas = NPCCanvas;
     }
@@ -72,6 +84,34 @@ public class MenuCanvasChanger : MonoBehaviour
         NPCCanvas.SetActive(false);
         visualAspectCanvas.SetActive(true);
         npcAttributeCanvas.SetActive(false);
+        NPCSubMenuCanvas.SetActive(false);
+        VisualSubMenuCanvas.SetActive(false);
+
+        activeCanvas = visualTraitCanvas;
+    }
+
+    public void ToNPCSub()
+    {
+        mainCanvas.SetActive(false);
+        visualTraitCanvas.SetActive(false);
+        NPCCanvas.SetActive(false);
+        visualAspectCanvas.SetActive(false);
+        npcAttributeCanvas.SetActive(false);
+        NPCSubMenuCanvas.SetActive(true);
+        VisualSubMenuCanvas.SetActive(false);
+
+        activeCanvas = visualTraitCanvas;
+    }
+
+    public void ToVisualSub()
+    {
+        mainCanvas.SetActive(false);
+        visualTraitCanvas.SetActive(false);
+        NPCCanvas.SetActive(false);
+        visualAspectCanvas.SetActive(false);
+        npcAttributeCanvas.SetActive(false);
+        NPCSubMenuCanvas.SetActive(false);
+        VisualSubMenuCanvas.SetActive(true);
 
         activeCanvas = visualTraitCanvas;
     }

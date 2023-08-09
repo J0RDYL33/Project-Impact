@@ -18,10 +18,13 @@ public class IAmNPC : MonoBehaviour
     public string nameFromInput;
     public List<NPCDialog> myDialogs;
     public List<SliderBehaviour> mySliders;
+    public List<TraitConnections> myTraitLinks;
 
     //Slider prefab stuff
     [SerializeField] private GameObject sliderPrefab;
     [SerializeField] private GameObject parentOfAttribute;
+    [SerializeField] private GameObject dropdownPrefab;
+    [SerializeField] private GameObject dropdownParent;
     private DialogButtons dialogButtons;
 
     // Start is called before the first frame update
@@ -66,7 +69,10 @@ public class IAmNPC : MonoBehaviour
         newSlider.transform.localScale = new Vector3(1, 1, 1);
         newSlider.transform.localPosition = new Vector3(0, 0, 0);
 
-        //newSlider.transform.SetSiblingIndex(mySliders.Count);
+        GameObject newDropdown = Instantiate(dropdownPrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+        newDropdown.transform.SetParent(dropdownParent.transform);
+        newDropdown.transform.localScale = new Vector3(1, 1, 1);
+        newDropdown.transform.localPosition = new Vector3(0, 0, 0);
 
         dialogButtons.RefreshRect();
     }
@@ -82,17 +88,22 @@ public class IAmNPC : MonoBehaviour
     public void UpdateAttribute(int indexOfUpdated)
     {
         mySliders[indexOfUpdated].UpdateText();
+        myTraitLinks[indexOfUpdated].UpdateText();
     }
 
     public void DeleteAttribute(int indexToDelete)
     {
-        GameObject objToDelete = mySliders[indexToDelete].gameObject;
+        GameObject objToDelete1 = mySliders[indexToDelete].gameObject;
+        GameObject objToDelete2 = myTraitLinks[indexToDelete].gameObject;
         mySliders.RemoveAt(indexToDelete);
-        Destroy(objToDelete);
+        myTraitLinks.RemoveAt(indexToDelete);
+        Destroy(objToDelete1);
+        Destroy(objToDelete2);
 
         for(int i = 0; i < mySliders.Count; i++)
         {
             mySliders[i].UpdateIndex();
+            myTraitLinks[i].UpdateIndex();
         }
     }
 
@@ -101,6 +112,14 @@ public class IAmNPC : MonoBehaviour
         for(int i = 0; i < myDialogs.Count; i++)
         {
             myDialogs[i].AddOption();
+        }
+    }
+
+    public void UpdateDropdownOptions()
+    {
+        for(int i = 0; i < myTraitLinks.Count; i++)
+        {
+            myTraitLinks[i].UpdateDropdown();
         }
     }
 }
