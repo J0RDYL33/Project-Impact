@@ -8,6 +8,7 @@ public class SliderBehaviour : MonoBehaviour
 {
     public TMP_Text textObject;
     public Slider sliderObject;
+    [SerializeField] private TMP_Text onSliderDigit;
 
     public int indexInNPC;
     public string nameOfAttribute;
@@ -39,6 +40,7 @@ public class SliderBehaviour : MonoBehaviour
     public void UpdateValue()
     {
         valueOfSlider = sliderObject.value;
+        onSliderDigit.text = valueOfSlider.ToString();
     }
 
     public void UpdateIndex()

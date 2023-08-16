@@ -18,7 +18,8 @@ public class IAmAspect : MonoBehaviour
     public int myIndexInButton;
     public string nameFromInput;
     public List<AspectSliders> mySliders;
-    [SerializeField] private List<string> typesOfAspects;
+    public List<string> typesOfAspects;
+    public int valueOfAspect;
 
     //Slider prefab stuff
     [SerializeField] private GameObject sliderPrefab;
@@ -103,5 +104,10 @@ public class IAmAspect : MonoBehaviour
             var addToDropdown = new TMP_Dropdown.OptionData(typesOfAspects[i]);
             myDropdown.options.Add(addToDropdown);
         }
+    }
+
+    public void GetValueFromDropdown()
+    {
+        valueOfAspect = myDropdown.value;
     }
 }

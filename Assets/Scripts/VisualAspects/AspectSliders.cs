@@ -8,6 +8,7 @@ public class AspectSliders : MonoBehaviour
 {
     public TMP_Text textObject;
     public Slider sliderObject;
+    [SerializeField] private TMP_Text onSliderDigit;
 
     public int indexInAspect;
     public string nameOfAspect;
@@ -46,5 +47,6 @@ public class AspectSliders : MonoBehaviour
     public void UpdateValue()
     {
         valueOfSlider = sliderObject.value;
+        onSliderDigit.text = valueOfSlider.ToString();
     }
 }
